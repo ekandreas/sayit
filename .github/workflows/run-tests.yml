@@ -13,7 +13,6 @@ jobs:
         stability: [prefer-stable]
 
     name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
-    environment: ActionEnvironmentsForAWS
 
     steps:
       - name: Checkout code
@@ -35,4 +34,14 @@ jobs:
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: composer test
+        env:
+          SAYIT_AWS_KEY: ${{ secrets.SAYIT_AWS_KEY }}
+          SAYIT_AWS_SECRET: ${{ secrets.SAYIT_AWS_SECRET }}
+          SAYIT_AWS_REGION: ${{ secrets.SAYIT_AWS_REGION }}
+          SAYIT_AWS_BUCKET: ${{ secrets.SAYIT_AWS_BUCKET }}
+        run: |
+          export SAYIT_AWS_KEY="${{ secrets.SAYIT_AWS_KEY }}"
+          export SAYIT_AWS_SECRET="${{ secrets.SAYIT_AWS_SECRET }}"
+          export SAYIT_AWS_REGION="${{ secrets.SAYIT_AWS_REGION }}"
+          export SAYIT_AWS_BUCKET="${{ secrets.SAYIT_AWS_BUCKET }}"
+          composer test
