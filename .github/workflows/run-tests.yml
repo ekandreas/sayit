@@ -37,6 +37,6 @@ jobs:
         env:
           SAYIT_AWS_KEY: ${{ secrets.SAYIT_AWS_KEY }}
           SAYIT_AWS_SECRET: ${{ secrets.SAYIT_AWS_SECRET }}
-          SAYIT_AWS_REGION: ${{ secrets.SAYIT_AWS_REGION }}
+          SAYIT_AWS_REGION: eu-north-1
           SAYIT_AWS_BUCKET: ${{ secrets.SAYIT_AWS_BUCKET }}
         run: composer test
