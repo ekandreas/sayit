@@ -10,7 +10,6 @@ class TextToSpeechTest extends TestCase
     /** @test */
     public function transform_text_to_s3()
     {
-
         $factory = TextToSpeech::make(
             getenv("SAYIT_AWS_KEY"),
             getenv("SAYIT_AWS_SECRET"),
@@ -26,6 +25,5 @@ class TextToSpeechTest extends TestCase
         $this->assertTrue(strlen($result) > 0);
         $response = file_get_contents($result);
         $this->assertTrue(strlen($response) > 0);
-
     }
 }

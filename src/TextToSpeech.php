@@ -18,8 +18,7 @@ class TextToSpeech
         string $region,
         string $bucket
     ) {
-
-        $me = new static;
+        $me = new static();
         $me->key = $key;
         $me->secret = $secret;
         $me->region = $region;
@@ -39,7 +38,7 @@ class TextToSpeech
             'credentials' => [
                 'key' => $this->key,
                 'secret' => $this->secret,
-            ]
+            ],
         ];
 
         $polly = new PollyClient($aws);
@@ -48,16 +47,16 @@ class TextToSpeech
             'Text' => $speech,
             'OutputFormat' => 'mp3',
             'TextType' => 'text',
-            'VoiceId' => 'Astrid'
+            'VoiceId' => 'Astrid',
         ]);
 
         $s3 = new S3Client($aws);
 
         $result = $s3->putObject([
             'Bucket' => $this->bucket,
-            'Key'    => $path . "/" . uniqid() . '.mp3',
-            'Body'   => $response['AudioStream'],
-            'ACL'    => 'public-read'
+            'Key' => $path . "/" . uniqid() . '.mp3',
+            'Body' => $response['AudioStream'],
+            'ACL' => 'public-read',
         ]);
 
         return $result['ObjectURL'];
