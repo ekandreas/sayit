@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [7.4]
-        stability: [prefer-lowest, prefer-stable]
+        stability: [prefer-stable]
 
     name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -39,4 +39,4 @@ jobs:
           SAYIT_AWS_SECRET: ${{ secrets.SAYIT_AWS_SECRET }}
           SAYIT_AWS_REGION: ${{ secrets.SAYIT_AWS_REGION }}
           SAYIT_AWS_BUCKET: ${{ secrets.SAYIT_AWS_BUCKET }}
-        run: vendor/bin/phpunit
+        run: composer test
