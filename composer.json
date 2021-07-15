@@ -1,21 +1,22 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "ekandreas/sayit",
+    "description": "Converts text to speech via AWS and place it in a S3 bucket folder",
     "keywords": [
-        ":vendor_name",
-        "package_slug"
+        "ekandreas",
+        "sayit"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/ekandreas/sayit",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Andreas Ek",
+            "email": "andreas@elseif.se",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0"
+        "php": "^7.4",
+        "aws/aws-sdk-php": "^3.185"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
@@ -25,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src"
+            "Ekandreas\\Sayit\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Ekandreas\\Sayit\\Tests\\": "tests"
         }
     },
     "scripts": {
