@@ -1,8 +1,8 @@
 # Sayit
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ekandreas/sayit.svg?style=flat-square)](https://packagist.org/packages/ekandreas/sayit)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/ekandreas/sayit/run-tests?label=tests)](https://github.com/ekandreas/sayit/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/ekandreas/sayit/Check%20&%20fix%20styling?label=code%20style)](https://github.com/ekandreas/sayit/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/ekandreas/sayit/run-tests?label=tests)](https://github.com/ekandreas/sayit/actions?query=workflow%3ATests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/ekandreas/sayit/Check%20&%20fix%20styling?label=code%20style)](https://github.com/ekandreas/sayit/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/ekandreas/sayit.svg?style=flat-square)](https://packagist.org/packages/ekandreas/sayit)
 
 ---
