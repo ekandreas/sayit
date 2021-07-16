@@ -33,7 +33,8 @@ class TextToSpeech
         return $me;
     }
 
-    private function aws() {
+    private function aws()
+    {
         return [
             'version' => 'latest',
             'region' => $this->region,
@@ -46,7 +47,6 @@ class TextToSpeech
 
     public function generate(string $speech): TextToSpeech
     {
-
         $polly = new PollyClient($this->aws());
 
         $result = $polly->synthesizeSpeech([
@@ -61,7 +61,8 @@ class TextToSpeech
         return $this;
     }
 
-     public function store(string $path): TextToSpeech {
+    public function store(string $path): TextToSpeech
+    {
         $s3 = new S3Client($this->aws());
 
         $id = uniqid("sayit_");
@@ -80,16 +81,20 @@ class TextToSpeech
         return $this;
     }
 
-    public function voice(string $voice) {
+    public function voice(string $voice)
+    {
         $this->voice = $voice;
+
         return $this;
     }
 
-    public function url() {
+    public function url()
+    {
         return $this->url;
     }
 
-    public function stream() {
+    public function stream()
+    {
         return $this->stream;
     }
 }
