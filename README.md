@@ -1,4 +1,4 @@
-# Converts text to speech via AWS and place it in a S3 bucket folder
+# Sayit
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ekandreas/sayit.svg?style=flat-square)](https://packagist.org/packages/ekandreas/sayit)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/ekandreas/sayit/run-tests?label=tests)](https://github.com/ekandreas/sayit/actions?query=workflow%3ATests+branch%3Amaster)
@@ -6,23 +6,30 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/ekandreas/sayit.svg?style=flat-square)](https://packagist.org/packages/ekandreas/sayit)
 
 ---
-This package can be used as to scaffold a framework agnostic package. Follow these steps to get started:
+Converts text to speech via AWS and place it in a S3 bucket folder
+This package is PHP agnostic. Follow these steps to get started:
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this sayit
-2. Run "./configure.sh" to run a script that will replace all placeholders throughout all the files
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
+1. `composer require ekandreas/sayit`
+2. Register an IAM programmatic account and set policy S3 full access and Polly Full Access to it.
+3. Use the key, secret, region and bucket name with the factory helper.
+4. Open a public folder in your S3 bucket and create a folder in it.
 ---
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+Code example:
+```php
+$factory = TextToSpeech::make(
+    $aws_key,
+    $aws_secret,
+    $aws_region,
+    $aws_bucket
+)
+    ->voice("Astrid")
+    ->generate("Hej på dig, det här kommer att läsas upp i en mp3 efter generering.")
+    ->store("your-folder");
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/sayit.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/sayit)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+// the url now points to a public s3 folder "your-folder" with a unique mp3 file generated from the text above.
+$url = $factory->url();
+```
 
 ## Installation
 
@@ -32,35 +39,15 @@ You can install the package via composer:
 composer require ekandreas/sayit
 ```
 
-## Usage
-
-```php
-$sayit = new Ekandreas\Sayit();
-echo $sayit->echoPhrase('Hello, Ekandreas!');
-```
-
 ## Testing
 
 ```bash
 composer test
 ```
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
 ## Credits
 
 - [Andreas Ek](https://github.com/ekandreas)
-- [All Contributors](../../contributors)
 
 ## License
 

@@ -15,15 +15,15 @@ class TextToSpeechTest extends TestCase
             getenv("SAYIT_AWS_SECRET"),
             getenv("SAYIT_AWS_REGION"),
             getenv("SAYIT_AWS_BUCKET")
-        );
+        )
+            ->voice("Astrid")
+            ->generate("Hej!")
+            ->store("test");
 
-        $result = $factory->convert(
-            "Hej",
-            "test"
-        );
+        $url = $factory->url();
 
-        $this->assertTrue(strlen($result) > 0);
-        $response = file_get_contents($result);
+        $this->assertTrue(strlen($url) > 0);
+        $response = file_get_contents($url);
         $this->assertTrue(strlen($response) > 0);
     }
 }

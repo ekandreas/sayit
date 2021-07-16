@@ -12,6 +12,10 @@ class TextToSpeech
     protected string $region;
     protected string $bucket;
 
+    protected string $stream;
+    protected string $url;
+    protected string $voice;
+
     public static function make(
         string $key,
         string $secret,
@@ -24,15 +28,13 @@ class TextToSpeech
         $me->region = $region;
         $me->bucket = $bucket;
 
+        $me->voice = "Astrid";
+
         return $me;
     }
 
-    /**
-     * Transforms text to speech and returns a public S3 url to the mp3 file placed in the given path for the bucket.
-     */
-    public function convert(string $speech, string $path): string
-    {
-        $aws = [
+    private function aws() {
+        return [
             'version' => 'latest',
             'region' => $this->region,
             'credentials' => [
@@ -40,25 +42,54 @@ class TextToSpeech
                 'secret' => $this->secret,
             ],
         ];
+    }
 
-        $polly = new PollyClient($aws);
+    public function generate(string $speech): TextToSpeech
+    {
 
-        $response = $polly->synthesizeSpeech([
+        $polly = new PollyClient($this->aws());
+
+        $result = $polly->synthesizeSpeech([
             'Text' => $speech,
             'OutputFormat' => 'mp3',
             'TextType' => 'text',
-            'VoiceId' => 'Astrid',
+            'VoiceId' => $this->voice,
         ]);
 
-        $s3 = new S3Client($aws);
+        $this->stream = $result['AudioStream'];
+
+        return $this;
+    }
+
+     public function store(string $path): TextToSpeech {
+        $s3 = new S3Client($this->aws());
+
+        $id = uniqid("sayit_");
+        $year = date('Y');
+        $month = date('m');
 
         $result = $s3->putObject([
             'Bucket' => $this->bucket,
-            'Key' => $path . "/" . uniqid() . '.mp3',
-            'Body' => $response['AudioStream'],
+            'Key' => "{$path}/{$year}/{$month}/{$id}.mp3",
+            'Body' => $this->stream,
             'ACL' => 'public-read',
         ]);
 
-        return $result['ObjectURL'];
+        $this->url = $result['ObjectURL'];
+
+        return $this;
+    }
+
+    public function voice(string $voice) {
+        $this->voice = $voice;
+        return $this;
+    }
+
+    public function url() {
+        return $this->url;
+    }
+
+    public function stream() {
+        return $this->stream;
     }
 }
