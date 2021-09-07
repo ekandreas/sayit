@@ -49,14 +49,21 @@ class TextToSpeech
     {
         $polly = new PollyClient($this->aws());
 
-        $result = $polly->synthesizeSpeech([
-            'Text' => $speech,
-            'OutputFormat' => 'mp3',
-            'TextType' => 'text',
-            'VoiceId' => $this->voice,
-        ]);
+        $sentences = preg_split('/(?<=[.?!])\s+(?=[a-z])/i', $speech);
 
-        $this->stream = $result['AudioStream'];
+        $this->stream = "";
+
+        foreach ($sentences as $sentence) {
+
+            $result = $polly->synthesizeSpeech([
+                'Text' => "{$sentence}",
+                'OutputFormat' => 'mp3',
+                'TextType' => 'text',
+                'VoiceId' => $this->voice,
+            ]);
+
+            $this->stream .= $result['AudioStream'];
+        }
 
         return $this;
     }

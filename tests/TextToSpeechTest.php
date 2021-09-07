@@ -17,7 +17,7 @@ class TextToSpeechTest extends TestCase
             getenv("SAYIT_AWS_BUCKET")
         )
             ->voice("Astrid")
-            ->generate("Hej!")
+            ->generate("Hej! Jag undrar vad som händer nu. För det kan vara svårt att gå efter vatten över å. Eller hur, ö? Hej då!")
             ->store("test");
 
         $url = $factory->url();
