@@ -54,7 +54,6 @@ class TextToSpeech
         $this->stream = "";
 
         foreach ($sentences as $sentence) {
-
             $result = $polly->synthesizeSpeech([
                 'Text' => "{$sentence}",
                 'OutputFormat' => 'mp3',
