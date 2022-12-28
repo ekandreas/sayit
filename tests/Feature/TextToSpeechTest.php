@@ -11,7 +11,7 @@ it("can create a speech file from Polly to AWS", function() {
         $_ENV["SAYIT_AWS_BUCKET"]
     )
         ->voice("Astrid")
-        ->generate("Hej! Jag undrar vad som händer nu. För det kan vara svårt att gå efter vatten över å. Eller hur, ö? Hej då!")
+        ->generate("Hej! Jag undrar vad som händer nu. För det kan vara svårt att gå efter vatten över å. Eller hur, öhh? Hej då!")
         ->store("test");
 
     $url = $factory->url();

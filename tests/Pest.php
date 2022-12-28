@@ -12,21 +12,10 @@
 */
 
 
-beforeAll(function () {
-    dd("!");
-    if(file_exists(__DIR__ . "/../../.env")) {
-        ray(realpath(__DIR__. "/../../"));
-        $dotenv = \Dotenv\Dotenv::createImmutable(realpath(__DIR__. "/../../"));
-        $dotenv->load();
-        $dotenv->required(['SAYIT_AWS_KEY', 'SAYIT_AWS_SECRET', 'SAYIT_AWS_REGION', 'SAYIT_AWS_BUCKET']);
-    }
-});
-
 use PHPUnit\Framework\TestCase;
 
 uses()->beforeAll(function() {
     if(file_exists(__DIR__ . "/../.env")) {
-        ray(realpath(__DIR__. "/../"));
         $dotenv = \Dotenv\Dotenv::createImmutable(realpath(__DIR__. "/../"));
         $dotenv->load();
         $dotenv->required(['SAYIT_AWS_KEY', 'SAYIT_AWS_SECRET', 'SAYIT_AWS_REGION', 'SAYIT_AWS_BUCKET']);

@@ -29,7 +29,7 @@ class TextToSpeech
         $me->region = $region;
         $me->bucket = $bucket;
 
-        $me->voice = "Elin";
+        $me->voice = "Astrid";
         $me->engine = "standard";
 
         return $me;
@@ -49,7 +49,6 @@ class TextToSpeech
 
     public function generate(string $speech): TextToSpeech
     {
-        ray($this->aws());
         $polly = new PollyClient($this->aws());
 
         $sentences = preg_split('/(?<=[.?!])\s+(?=[a-z])/i', $speech);

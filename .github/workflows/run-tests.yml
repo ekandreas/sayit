@@ -9,7 +9,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        php: [7.4, 8.0]
+        php: [8.0]
         stability: [prefer-lowest, prefer-stable]
 
     name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
@@ -37,6 +37,6 @@ jobs:
         env:
           SAYIT_AWS_KEY: '${{ secrets.SAYIT_AWS_KEY }}'
           SAYIT_AWS_SECRET: '${{ secrets.SAYIT_AWS_SECRET }}'
-          SAYIT_AWS_REGION: 'eu-north-1'
-          SAYIT_AWS_BUCKET: 'sayit'
+          SAYIT_AWS_REGION: 'eu-central-1'
+          SAYIT_AWS_BUCKET: 'sayit-elin'
         run: composer test

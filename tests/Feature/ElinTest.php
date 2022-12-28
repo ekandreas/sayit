@@ -12,7 +12,7 @@ it("can make use of Elin", function() {
     )
         ->voice("Elin")
         ->engine('neural')
-        ->generate("Hej! Jag undrar vad som händer nu. För det kan vara svårt att gå efter vatten över å. Eller hur, ö? Hej då!")
+        ->generate("Hej! Jag undrar vad som händer nu. För det kan vara svårt att gå efter vatten över å. Eller hur, öhh? Hej då!")
         ->store("test");
 
     $url = $factory->url();
