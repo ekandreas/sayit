@@ -2,8 +2,7 @@
 
 use Ekandreas\Sayit\TextToSpeech;
 
-it("can make use of Elin", function() {
-
+it("can make use of Elin", function () {
     $factory = TextToSpeech::make(
         $_ENV["SAYIT_AWS_KEY"],
         $_ENV["SAYIT_AWS_SECRET"],
@@ -20,5 +19,4 @@ it("can make use of Elin", function() {
     $this->assertTrue(strlen($url) > 0);
     $response = file_get_contents($url);
     $this->assertTrue(strlen($response) > 0);
-
 });
