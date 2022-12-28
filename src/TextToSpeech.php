@@ -15,6 +15,7 @@ class TextToSpeech
     protected string $stream;
     protected string $url;
     protected string $voice;
+    protected string $engine;
 
     public static function make(
         string $key,
@@ -29,6 +30,7 @@ class TextToSpeech
         $me->bucket = $bucket;
 
         $me->voice = "Elin";
+        $me->engine = "standard";
 
         return $me;
     }
@@ -47,6 +49,7 @@ class TextToSpeech
 
     public function generate(string $speech): TextToSpeech
     {
+        ray($this->aws());
         $polly = new PollyClient($this->aws());
 
         $sentences = preg_split('/(?<=[.?!])\s+(?=[a-z])/i', $speech);
@@ -56,6 +59,7 @@ class TextToSpeech
         foreach ($sentences as $sentence) {
 
             $result = $polly->synthesizeSpeech([
+                'Engine' => $this->engine,
                 'Text' => "{$sentence}",
                 'OutputFormat' => 'mp3',
                 'TextType' => 'text',
@@ -91,6 +95,13 @@ class TextToSpeech
     public function voice(string $voice)
     {
         $this->voice = $voice;
+
+        return $this;
+    }
+
+    public function engine(string $engine)
+    {
+        $this->engine = $engine;
 
         return $this;
     }

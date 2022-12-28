@@ -23,7 +23,8 @@ $factory = TextToSpeech::make(
     $aws_region,
     $aws_bucket
 )
-    ->voice("Astrid")
+    ->voice("Elin")
+    ->engine('Neural')
     ->generate("Hej på dig, det här kommer att läsas upp i en mp3 efter generering.")
     ->store("your-folder");
 
