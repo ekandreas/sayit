@@ -28,7 +28,7 @@ class TextToSpeech
         $me->region = $region;
         $me->bucket = $bucket;
 
-        $me->voice = "Astrid";
+        $me->voice = "Elin";
 
         return $me;
     }
