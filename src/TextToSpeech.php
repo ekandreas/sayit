@@ -57,7 +57,6 @@ class TextToSpeech
         $this->stream = "";
 
         foreach ($sentences as $sentence) {
-
             $result = $polly->synthesizeSpeech([
                 'Engine' => $this->engine,
                 'Text' => "{$sentence}",
