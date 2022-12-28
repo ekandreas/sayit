@@ -14,7 +14,7 @@
 
 beforeAll(function () {
     dd("!");
-    if(file_exists(__DIR__ . "/../../.env")) {
+    if (file_exists(__DIR__ . "/../../.env")) {
         ray(realpath(__DIR__. "/../../"));
         $dotenv = \Dotenv\Dotenv::createImmutable(realpath(__DIR__. "/../../"));
         $dotenv->load();
@@ -24,8 +24,8 @@ beforeAll(function () {
 
 use PHPUnit\Framework\TestCase;
 
-uses()->beforeAll(function() {
-    if(file_exists(__DIR__ . "/../.env")) {
+uses()->beforeAll(function () {
+    if (file_exists(__DIR__ . "/../.env")) {
         ray(realpath(__DIR__. "/../"));
         $dotenv = \Dotenv\Dotenv::createImmutable(realpath(__DIR__. "/../"));
         $dotenv->load();
